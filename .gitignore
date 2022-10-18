@@ -1,0 +1,6 @@
+.venv
+_pycache_
+test.py
+db.py*
+*.pyc
+.DS_Store
