@@ -4,7 +4,7 @@ from flask import Flask, request
 from flask_smorest import abort
 from db import stores, items, users
 
-
+#Handle some errors here
 class PermissionError(RuntimeError):
     pass
 
