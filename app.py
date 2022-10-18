@@ -11,12 +11,12 @@ class PermissionError(RuntimeError):
 app = Flask(__name__)
 
 ## UserCheck middleware
-def make_secure(jina):
+def make_secure(name):
     def outer(func):
         @functools.wraps(func)
         def inner(*args,**kwargs):
             for user in users:
-                if user["username"] == jina:
+                if user["username"] == name:
                     if user["password"] == "pass1234":
                         return func(*args,**kwargs)
                 raise PermissionError("You are not authorized!")
