@@ -28,9 +28,9 @@ def make_secure(name):
 @make_secure("spartan")
 def home():
     return """
-        <h2>Welcome to the smorest-store-api</h2>
+        <h2>Welcome to the "smorest" store api</h2>
     """
-    
+
 
 #### STORES
 # GET All Stores
