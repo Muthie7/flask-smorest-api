@@ -30,6 +30,7 @@ def home():
     return """
         <h2>Welcome to the smorest-store-api</h2>
     """
+    
 
 #### STORES
 # GET All Stores
