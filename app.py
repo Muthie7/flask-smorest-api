@@ -27,7 +27,9 @@ def make_secure(name):
 @app.get('/')
 @make_secure("spartan")
 def home():
-    return "<h1>Country Road,Take me Hooome sweet...</h1>"
+    return """
+        <h2>Welcome to the smorest-store-api</h2>
+    """
 
 #### STORES
 # GET All Stores
