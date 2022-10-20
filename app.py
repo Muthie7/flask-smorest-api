@@ -16,5 +16,5 @@ app.config["OPENAPI_SWAGGER_UI_URL"]= "https://cdn.jsdelivr.net/npm/swagger-ui-d
 
 api = Api(app)  #connect flask smorest to the flask app
 
-api.register_blueprint(ItemBlueprint)  #register blueprint
+api.register_blueprint(ItemBlueprint)  #register blueprint 
 api.register_blueprint(StoreBlueprint)

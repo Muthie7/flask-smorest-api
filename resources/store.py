@@ -1,11 +1,12 @@
 from email import message
+from pydoc import describe
 import uuid
 from flask import request
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from db import stores
 
-blp = Blueprint("stores",__name__, desciption="Stores Operations")
+blp = Blueprint("stores",__name__, describe="Stores Operations")
 
 # connect Flask Smorest with the Store Class methodview
 #make a get rqst it goes to below route
