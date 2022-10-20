@@ -5,7 +5,7 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from db import items, stores
 
-blp = Blueprint("items",__name__,describe="Items Operations")
+blp = Blueprint("items",__name__)
 
 #Create MethodViews
 
