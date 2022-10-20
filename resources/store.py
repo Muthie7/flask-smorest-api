@@ -32,7 +32,7 @@ class StoreList(MethodView):
         return stores.values()
     
     @blp.arguments(StoreSchema)
-    @blp.response(201, StoreSchema)
+    @blp.response(200, StoreSchema)
     def post(self, store_data):
         for store in stores.values():
             if store_data["name"] == store["name"]:
@@ -43,5 +43,5 @@ class StoreList(MethodView):
             "store_id": store_id
         }
         stores[store_id] = store
-        return store, 201
+        return store
 
