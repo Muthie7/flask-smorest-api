@@ -4,3 +4,4 @@ test.py
 db.py*
 *.pyc
 .DS_Store
+store2.py
