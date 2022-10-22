@@ -1,9 +1,3 @@
-stores = {}
-items = {} 
+from flask_sqlalchemy import SQLAlchemy
 
-users = [
-    {
-        "username":"spartan",
-        "password": "pass1234"
-    }
-]
+db = SQLAlchemy()
