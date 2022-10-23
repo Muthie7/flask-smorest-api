@@ -10,7 +10,6 @@ class PlainStoreSchema(Schema):
     store_id = fields.Str(dump_only=True)
     name = fields.Str(required=True)
     location = fields.Str(required=True)
-    level = fields.Float(required=True)
 
 
 class ItemSchema(PlainItemSchema):
