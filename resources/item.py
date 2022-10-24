@@ -1,7 +1,6 @@
-import uuid
 from flask.views import MethodView
 from flask_smorest import Blueprint, abort
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
 
 from db import db
