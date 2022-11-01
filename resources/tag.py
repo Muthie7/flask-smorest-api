@@ -8,7 +8,7 @@ from schemas import TagSchema, TagAndItemSchema
 
 blp = Blueprint("Tags",__name__, description="Operations on tags")
 
-@blp.route("/store/<string:store_id>/tag")  # Retrival of tags in a store
+@blp.route("/store/<int:store_id>/tag")  # Retrival of tags in a store
 class TagInStore(MethodView):
     @blp.response(200, TagSchema(many=True))  
     def get(self, store_id):
@@ -29,7 +29,7 @@ class TagInStore(MethodView):
         return tag
 
 # Linking/Unlinkins tags from items
-@blp.route("/item/<string:item_id>/tag/<string:tag_id>")
+@blp.route("/item/<int:item_id>/tag/<string:tag_id>")
 class LinkTagsToItem(MethodView):  # doesnt create a new tag simply just links the tag found to an item found
     @blp.response(201, TagSchema)
     def post(self, item_id, tag_id):

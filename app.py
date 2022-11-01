@@ -1,5 +1,7 @@
 import os
-from flask import Flask
+import secrets
+
+from flask import Flask, jsonify
 from flask_smorest import Api
 from flask_jwt_extended import JWTManager
 
@@ -10,6 +12,7 @@ from db import db
 from resources.item import blp as ItemBlueprint
 from resources.store import blp as StoreBlueprint
 from resources.tag import blp as TagBlueprint
+from resources.user import blp as UserBlueprint
 
 def create_app(db_url=None):
     app= Flask(__name__, instance_path=os.getcwd())
@@ -28,8 +31,41 @@ def create_app(db_url=None):
     db.init_app(app)
     api = Api(app)  #connect flask smorest to the flask app
 
-    app.config["JWT_SECRET_KEY"] ="spartan"
+    #create an instance of the JWT manager and link to the app
+    # app.config['JWT_SECRET_KEY'] = "jose"
+    # app.config["JWT_SECRET_KEY"] = secrets.SystemRandom().getrandbits (128)  ==> generate separately
+    app.config["JWT_SECRET_KEY"] = "303722500090746473601554721745038234670"
     jwt = JWTManager(app)
+
+    @jwt.expired_token_loader
+    def expired_token_callback(jwt_header,jwt_payload):
+        return(
+            jsonify(
+                {
+                "message":"The token has expired.",
+                "error": "token expired."}
+                ),401
+        )
+
+    @jwt.invalid_token_loader
+    def invalid_token_callback(error):
+        return(
+            jsonify(
+                {"message":"Signature verification failed.",
+                "error": "Invalid_token"}
+            ), 401
+        )
+    
+    @jwt.unauthorized_loader
+    def missing_token_callback(error):
+        return(
+            jsonify(
+                {
+                    "description": "Request does not contain an access token",
+                    "error": "authorization_required"
+                }
+            ), 401
+        )
 
     with app.app_context():
         import models
@@ -39,6 +75,8 @@ def create_app(db_url=None):
     api.register_blueprint(ItemBlueprint)  #register blueprint 
     api.register_blueprint(StoreBlueprint)
     api.register_blueprint(TagBlueprint)
+    api.register_blueprint(UserBlueprint)
+    
     return app
 
 if __name__ == '__main__':
